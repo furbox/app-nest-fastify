@@ -27,6 +27,8 @@
     "@nestjs/mongoose": "^8.0.1",
     "@nestjs/platform-fastify": "^8.0.6",
     "@nestjs/swagger": "^5.0.9",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
     "fastify-swagger": "^4.11.0",
     "mongoose": "^5.13.9",
     "pino-pretty": "^7.0.0",

@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ModuleModule } from './app/module/module.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       useCreateIndex: true,
       useFindAndModify: false,
     }),
+    ModuleModule,
   ],
 })
 export class AppModule {
