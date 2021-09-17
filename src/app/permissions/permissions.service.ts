@@ -27,11 +27,17 @@ export class PermissionsService {
   }
 
   async findAll(): Promise<IPermissions[]> {
-    return await this.permissionSchema.find({});
+    return await this.permissionSchema.find({}).populate({
+      path: 'module',
+      select: 'name description',
+    });
   }
 
   async findOne(id: Types.ObjectId): Promise<IPermissions> {
-    return await this.permissionSchema.findById(id);
+    return await this.permissionSchema.findById(id).populate({
+      path: 'module',
+      select: 'name description',
+    });
   }
 
   async update(

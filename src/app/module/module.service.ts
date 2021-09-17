@@ -25,7 +25,7 @@ export class ModuleService {
   }
 
   async findAll(): Promise<IModule[]> {
-    const modules = await this.moduleSchema.find({}).populate('module');
+    const modules = await this.moduleSchema.find({});
     return modules;
   }
 

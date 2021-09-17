@@ -1,14 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { Moddule } from '../../module/entities/module.entity';
+import { Permission } from '../../permissions/entities/permission.entity';
 
 @Schema({ timestamps: true, versionKey: false })
-export class Permission {
+export class Role {
   @Prop({ required: true })
   name: string;
-
-  @Prop({ required: true })
-  namekey: string;
 
   @Prop({ required: true })
   description: string;
@@ -22,9 +19,9 @@ export class Permission {
   @Prop({ type: Boolean, default: true })
   status: boolean;
 
-  @Prop({ type: mongoose.Types.ObjectId, required: true, ref: Moddule.name })
-  module: mongoose.Types.ObjectId;
+  @Prop({ type: [{ type: mongoose.Types.ObjectId, ref: Permission.name }] })
+  permissions: mongoose.Types.ObjectId[];
 }
 
-export type PermissionDocument = Permission & mongoose.Document;
-export const PermissionSchema = SchemaFactory.createForClass(Permission);
+export type RoleDocument = Role & mongoose.Document;
+export const RoleSchema = SchemaFactory.createForClass(Role);
