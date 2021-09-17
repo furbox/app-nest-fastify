@@ -20,8 +20,8 @@ export class RoleService {
     if (exist) {
       throw new ConflictException('This Module Exist');
     }
-    const module = new this.roleSchema(createRoleDto);
-    return await module.save();
+    const role = new this.roleSchema(createRoleDto);
+    return await role.save();
   }
 
   async findAll(): Promise<IRole[]> {
@@ -49,5 +49,9 @@ export class RoleService {
     return await this.roleSchema.findByIdAndUpdate(id, del, {
       new: true,
     });
+  }
+
+  async getRoleByName(name: string) {
+    return await this.roleSchema.findOne({ name });
   }
 }
