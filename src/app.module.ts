@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ModuleModule } from './app/module/module.module';
+import { PermissionsModule } from './app/permissions/permissions.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { ModuleModule } from './app/module/module.module';
       useFindAndModify: false,
     }),
     ModuleModule,
+    PermissionsModule,
   ],
 })
 export class AppModule {

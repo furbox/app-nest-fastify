@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, Logger } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { CreateModuleDto } from './dto/create-module.dto';
@@ -8,14 +8,13 @@ import { IModule } from './interface/module.interface';
 
 @Injectable()
 export class ModuleService {
-  private readonly logger = new Logger();
   constructor(
     @InjectModel(Moddule.name)
     private readonly moduleSchema: Model<IModule>,
   ) {}
 
   async create(createModuleDto: CreateModuleDto): Promise<IModule> {
-    const exist = await this.moduleSchema.find({
+    const exist = await this.moduleSchema.findOne({
       name: createModuleDto.name,
     });
     if (exist) {
@@ -26,7 +25,7 @@ export class ModuleService {
   }
 
   async findAll(): Promise<IModule[]> {
-    const modules = await this.moduleSchema.find({});
+    const modules = await this.moduleSchema.find({}).populate('module');
     return modules;
   }
 

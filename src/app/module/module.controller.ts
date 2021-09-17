@@ -25,16 +25,19 @@ export class ModuleController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'Get all modules' })
   findAll() {
     return this.moduleService.findAll();
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Get one module' })
   findOne(@Param('id') id: Types.ObjectId) {
     return this.moduleService.findOne(id);
   }
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Update module' })
   update(
     @Param('id') id: Types.ObjectId,
     @Body() updateModuleDto: UpdateModuleDto,
@@ -43,6 +46,7 @@ export class ModuleController {
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Delete module' })
   remove(@Param('id') id: Types.ObjectId) {
     return this.moduleService.remove(id);
   }
