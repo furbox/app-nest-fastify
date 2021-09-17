@@ -11,6 +11,7 @@ import { ModuleService } from './module.service';
 import { CreateModuleDto } from './dto/create-module.dto';
 import { UpdateModuleDto } from './dto/update-module.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Types } from 'mongoose';
 
 @ApiTags('Modules')
 @Controller('v1/module')
@@ -29,17 +30,20 @@ export class ModuleController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.moduleService.findOne(+id);
+  findOne(@Param('id') id: Types.ObjectId) {
+    return this.moduleService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateModuleDto: UpdateModuleDto) {
-    return this.moduleService.update(+id, updateModuleDto);
+  update(
+    @Param('id') id: Types.ObjectId,
+    @Body() updateModuleDto: UpdateModuleDto,
+  ) {
+    return this.moduleService.update(id, updateModuleDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.moduleService.remove(+id);
+  remove(@Param('id') id: Types.ObjectId) {
+    return this.moduleService.remove(id);
   }
 }
